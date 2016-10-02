@@ -1,0 +1,2198 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<h2 id="basics">Basics</h2>
+
+<p>The Biz Airlines API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
+
+<p>The API accepts JSON in request bodies and requires that the <code class="prettyprint">content-type: application/json</code> header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may return single objects or arrays of objects, nested within the response object.</p>
+
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight plaintext"><code>HTTP Example
+</code></pre>
+<pre class="highlight plaintext"><code>POST /v1/me HTTP/1.1
+Host: api.bizairlines.com
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYml6YWlybGluZXMuY29tXC8iLCJhdWQiOiJodHRwOlwvXC9hcGkuYml6YWlybGluZXMuY29tXC8iLCJpYXQiOjE0NzA0ODkyNzMsIm5iZiI6MTQ3MDQ4OTI3MywiZXhwIjoxNzg2MDIyMDczLCJpZCI6MX0.jlWjsSKMPt1krq86VtYPDzc5tKcn68yVT2fAhoxCBfVjA_NHc3uOVeAXN1MiVcaUU0wIzOdFP8hDz9zcWcgBkA
+Content-Type: application/json
+</code></pre>
+
+<p>Biz Airlines uses <a href="https://jwt.io/">JWT</a> to generate it&rsquo;s API authentication tokens. Some endpoints requires token and it must be sent inside the HTTP Authorization header and the token should be prepended with <code class="prettyprint">Bearer</code>.</p>
+
+          <h1 id="security">Security</h1>
+
+<h2 id="create-account">Create account</h2>
+<pre class="highlight plaintext"><code>POST /v1/security/account
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/security/account'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span> <span class="se">\</span>
+    -d <span class="nv">password</span><span class="o">=</span><span class="s1">'secure password'</span> <span class="se">\</span>
+    -d <span class="nv">first_name</span><span class="o">=</span>John <span class="se">\</span>
+    -d <span class="nv">last_name</span><span class="o">=</span>Doe <span class="se">\</span>
+    -d <span class="nv">country_id</span><span class="o">=</span>100
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><em>yes</em></td>
+<td>The user’s email address that will also be used as login.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>password</td>
+<td><em>yes</em></td>
+<td>Secure password.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td><em>yes</em></td>
+<td>User&rsquo;s first name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td><em>yes</em></td>
+<td>User&rsquo;s last name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>country_id</td>
+<td><em>yes</em></td>
+<td>Country ID based on a <a href="#countries">country list</a>.</td>
+<td>int</td>
+</tr>
+<tr>
+<td>phone</td>
+<td><em>no</em></td>
+<td>User&rsquo;s phone.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>hourly_salary</td>
+<td><em>no</em></td>
+<td>User&rsquo;s hourly salary (USD).</td>
+<td>float</td>
+</tr>
+</tbody></table>
+
+<h2 id="login">Login</h2>
+<pre class="highlight plaintext"><code>POST /v1/security/login/app
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name@tld.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/security/login/app'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span> <span class="se">\</span>
+    -d <span class="nv">password</span><span class="o">=</span><span class="s1">'secure password'</span>
+</code></pre>
+
+<p>Check sent credentials, authenticate a user and return a valid token and user object.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><em>yes</em></td>
+<td>The user’s email address.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>password</td>
+<td><em>yes</em></td>
+<td>Registered password.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h2 id="reset-password">Reset password</h2>
+
+<p>The reset password contains two steps process:</p>
+
+<ol>
+<li>Generate and send a 6 digit code;</li>
+<li>Reset password.</li>
+</ol>
+
+<h3 id="generate-code">Generate code</h3>
+<pre class="highlight plaintext"><code>POST /v1/security/password/reset
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/security/password/reset'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span>
+</code></pre>
+
+<p>Generate a 6 digit code that allows the user to reset the password.</p>
+
+<p>This code is valid for 1 day and will be sent to a registered email.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><em>yes</em></td>
+<td>The user’s email address.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="reset-password">Reset password</h3>
+<pre class="highlight plaintext"><code>PUT /v1/security/password/reset
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/security/password/reset'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">token</span><span class="o">=</span><span class="s1">'123456'</span> <span class="se">\</span>
+    -d <span class="nv">password</span><span class="o">=</span><span class="s1">'your-password'</span> <span class="se">\</span>
+    -d <span class="nv">password_confirm</span><span class="o">=</span><span class="s1">'your-password'</span> <span class="se">\</span>
+    -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span>
+</code></pre>
+
+<p>With the 6 digit code sent to the email, the user now is authorized to reset his password.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><em>yes</em></td>
+<td>The user’s email address.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>token</td>
+<td><em>yes</em></td>
+<td>6 digit code sent to user&rsquo;s email.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>password</td>
+<td><em>yes</em></td>
+<td>Secure password.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>password_confirm</td>
+<td><em>yes</em></td>
+<td>Secure password confirmation.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+          <h1 id="users">Users</h1>
+
+<h2 id="get">Get</h2>
+<pre class="highlight plaintext"><code>GET /v1/users/{id}
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span>
+</code></pre>
+
+<p>Retrieve an user information, such as company, country and address.</p>
+
+<h2 id="update">Update</h2>
+<pre class="highlight plaintext"><code>PUT /v1/users/{$id}
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">first_name</span><span class="o">=</span>John <span class="se">\</span>
+    -d <span class="nv">last_name</span><span class="o">=</span>Doe <span class="se">\</span>
+    -d <span class="nv">country_id</span><span class="o">=</span>100 <span class="se">\</span>
+    -d <span class="nv">phone</span><span class="o">=</span><span class="s1">'+55 61 991560000'</span> <span class="se">\</span>
+    -d <span class="nv">hourly_salary</span><span class="o">=</span>2000
+</code></pre>
+
+<aside class="notice">
+It&rsquo;s not necessary to send all the parameters in the same request.
+</aside>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>User&rsquo;s first name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>User&rsquo;s last name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>country_id</td>
+<td>Country ID based on a <a href="#countries">country list</a>.</td>
+<td>int</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>User&rsquo;s phone.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>hourly_salary</td>
+<td>User&rsquo;s hourly salary (USD).</td>
+<td>float</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete">Delete</h2>
+<pre class="highlight plaintext"><code>DELETE /v1/users/{$id}
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XDELETE <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span>
+</code></pre>
+
+<p>Delete user&rsquo;s account.</p>
+
+<h2 id="avatar">Avatar</h2>
+<pre class="highlight plaintext"><code>POST /v1/users/{$id}/avatar
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/users/{$id}/avatar'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -F <span class="s1">'image=@/path/to/pictures/picture.jpg'</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>image</td>
+<td><em>yes</em></td>
+<td>A valid <strong>PNG</strong> or <strong>JPG</strong> file.</td>
+<td>binary</td>
+</tr>
+</tbody></table>
+
+<h2 id="change-password">Change password</h2>
+<pre class="highlight plaintext"><code>PUT /v1/users/{$id}/password
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/users/{$id}/password'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">password</span><span class="o">=</span><span class="s1">'secure password'</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>password</td>
+<td><em>yes</em></td>
+<td>Secure password.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+          <h1 id="domain-tables">Domain tables</h1>
+
+          <h2 id="aircraft">Aircraft</h2>
+<pre class="highlight plaintext"><code>GET /v1/aircraft/autocomplete
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/aircraft/autocomplete'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">s</span><span class="o">=</span><span class="s2">"learj"</span>
+</code></pre>
+<pre class="highlight plaintext"><code>Example response
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Airbus A300"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"crew_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"passanger_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"empty_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_takeoff_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"wingspan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fuselage_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fuselage_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"wing_area"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_fuel_load"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"engine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cruise_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"never_exceed_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Airbus"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Airbus A310"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"crew_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"passanger_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"empty_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_takeoff_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"wingspan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fuselage_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fuselage_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"wing_area"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_fuel_load"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"engine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cruise_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"never_exceed_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Airbus"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>s</td>
+<td><em>no</em></td>
+<td>The term you want to search for.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+          <h2 id="airlines">Airlines</h2>
+<pre class="highlight plaintext"><code>GET /v1/airlines/autocomplete
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/airlines/autocomplete'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">s</span><span class="o">=</span><span class="s1">'aero'</span> <span class="se">\</span>
+    -d category[]<span class="o">=</span><span class="s1">'jet-shuttle'</span> <span class="se">\</span>
+    -d category[]<span class="o">=</span><span class="s1">'charter-operator'</span>
+</code></pre>
+<pre class="highlight plaintext"><code>Example response
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">143</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aero Charter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aero Jet Services"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aerodynamics Malaga"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aerolineas Ejecutivas"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">147</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aeronautical Charters"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aerotours"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">172</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Albinati Aeronautics"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">228</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalina Aerospace"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">277</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DuPage Aerospace"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">314</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ExxAero"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Return the list of registered airlines. The airlines are available in 3 categories:</p>
+
+<ul>
+<li><code class="prettyprint">airline</code></li>
+<li><code class="prettyprint">jet-shuttle</code></li>
+<li><code class="prettyprint">charter-operator</code></li>
+</ul>
+
+<aside class="notice">
+In order to get the proper result you must sent the attribute &ldquo;category&rdquo;, the default category is &ldquo;airline&rdquo; but you can search for multiple categories.
+</aside>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>s</td>
+<td><em>no</em></td>
+<td>The term you want to search for.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>category</td>
+<td><em>no</em></td>
+<td>The desired airline category.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+          <h2 id="countries">Countries</h2>
+<pre class="highlight plaintext"><code>GET /v1/countries
+</code></pre>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/countries'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span>
+</code></pre>
+<pre class="highlight plaintext"><code>Example response
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"area_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">233</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"area_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAN"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"area_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iso_code_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AFG"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"area_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:21"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Return the list of countries ordered by the attribute <code class="prettyprint">order</code> where the countries with <code class="prettyprint">null</code> value are the lasts.</p>
+
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>ISO Code 2</th>
+<th>ISO Code 3</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Afghanistan</td>
+<td>AF</td>
+<td>AFG</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Albania</td>
+<td>AL</td>
+<td>ALB</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Algeria</td>
+<td>DZ</td>
+<td>DZA</td>
+</tr>
+<tr>
+<td>4</td>
+<td>American Samoa</td>
+<td>AS</td>
+<td>ASM</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Andorra</td>
+<td>AD</td>
+<td>AND</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Angola</td>
+<td>AO</td>
+<td>AGO</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Anguilla</td>
+<td>AI</td>
+<td>AIA</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Antarctica</td>
+<td>AQ</td>
+<td>ATA</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Antigua &amp; Barbuda</td>
+<td>AG</td>
+<td>ATG</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Argentina</td>
+<td>AR</td>
+<td>ARG</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Armenia</td>
+<td>AM</td>
+<td>ARM</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Aruba</td>
+<td>AW</td>
+<td>ABW</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Australia</td>
+<td>AU</td>
+<td>AUS</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Austria</td>
+<td>AT</td>
+<td>AUT</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Azerbaijan</td>
+<td>AZ</td>
+<td>AZE</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Bahamas</td>
+<td>BS</td>
+<td>BHS</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Bahrain</td>
+<td>BH</td>
+<td>BHR</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Bangladesh</td>
+<td>BD</td>
+<td>BGD</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Barbados</td>
+<td>BB</td>
+<td>BRB</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Belarus</td>
+<td>BY</td>
+<td>BLR</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Belgium</td>
+<td>BE</td>
+<td>BEL</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Belize</td>
+<td>BZ</td>
+<td>BLZ</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Benin</td>
+<td>BJ</td>
+<td>BEN</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Bermuda</td>
+<td>BM</td>
+<td>BMU</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Bhutan</td>
+<td>BT</td>
+<td>BTN</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Bolivia</td>
+<td>BO</td>
+<td>BOL</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Bosnia</td>
+<td>BA</td>
+<td>BIH</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Botswana</td>
+<td>BW</td>
+<td>BWA</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Bouvet Island</td>
+<td>BV</td>
+<td>BVT</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Brazil</td>
+<td>BR</td>
+<td>BRA</td>
+</tr>
+<tr>
+<td>31</td>
+<td>British Indian Ocean Territory</td>
+<td>IO</td>
+<td>IOT</td>
+</tr>
+<tr>
+<td>32</td>
+<td>British Virgin Islands</td>
+<td>VG</td>
+<td>VGB</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Brunei</td>
+<td>BN</td>
+<td>BRN</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Bulgaria</td>
+<td>BG</td>
+<td>BGR</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Burkina Faso</td>
+<td>BF</td>
+<td>BFA</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Burundi</td>
+<td>BI</td>
+<td>BDI</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Cambodia</td>
+<td>KH</td>
+<td>KHM</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Cameroon</td>
+<td>CM</td>
+<td>CMR</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Canada</td>
+<td>CA</td>
+<td>CAN</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Cape Verde</td>
+<td>CV</td>
+<td>CPV</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Caribbean Netherlands</td>
+<td>BQ</td>
+<td>BES</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Cayman Islands</td>
+<td>KY</td>
+<td>CYM</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Central African Republic</td>
+<td>CF</td>
+<td>CAF</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Chad</td>
+<td>TD</td>
+<td>TCD</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Chile</td>
+<td>CL</td>
+<td>CHL</td>
+</tr>
+<tr>
+<td>46</td>
+<td>China</td>
+<td>CN</td>
+<td>CHN</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Christmas Island</td>
+<td>CX</td>
+<td>CXR</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Cocos (Keeling) Islands</td>
+<td>CC</td>
+<td>CCK</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Colombia</td>
+<td>CO</td>
+<td>COL</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Comoros</td>
+<td>KM</td>
+<td>COM</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Congo - Brazzaville</td>
+<td>CG</td>
+<td>COG</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Congo - Kinshasa</td>
+<td>CD</td>
+<td>COD</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Cook Islands</td>
+<td>CK</td>
+<td>COK</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Costa Rica</td>
+<td>CR</td>
+<td>CRI</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Croatia</td>
+<td>HR</td>
+<td>HRV</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Cuba</td>
+<td>CU</td>
+<td>CUB</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Curaçao</td>
+<td>CW</td>
+<td>CUW</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Cyprus</td>
+<td>CY</td>
+<td>CYP</td>
+</tr>
+<tr>
+<td>59</td>
+<td>Czech Republic</td>
+<td>CZ</td>
+<td>CZE</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Côte d’Ivoire</td>
+<td>CI</td>
+<td>CIV</td>
+</tr>
+<tr>
+<td>61</td>
+<td>Denmark</td>
+<td>DK</td>
+<td>DNK</td>
+</tr>
+<tr>
+<td>62</td>
+<td>Djibouti</td>
+<td>DJ</td>
+<td>DJI</td>
+</tr>
+<tr>
+<td>63</td>
+<td>Dominica</td>
+<td>DM</td>
+<td>DMA</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Dominican Republic</td>
+<td>DO</td>
+<td>DOM</td>
+</tr>
+<tr>
+<td>65</td>
+<td>Ecuador</td>
+<td>EC</td>
+<td>ECU</td>
+</tr>
+<tr>
+<td>66</td>
+<td>Egypt</td>
+<td>EG</td>
+<td>EGY</td>
+</tr>
+<tr>
+<td>67</td>
+<td>El Salvador</td>
+<td>SV</td>
+<td>SLV</td>
+</tr>
+<tr>
+<td>68</td>
+<td>Equatorial Guinea</td>
+<td>GQ</td>
+<td>GNQ</td>
+</tr>
+<tr>
+<td>69</td>
+<td>Eritrea</td>
+<td>ER</td>
+<td>ERI</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Estonia</td>
+<td>EE</td>
+<td>EST</td>
+</tr>
+<tr>
+<td>71</td>
+<td>Ethiopia</td>
+<td>ET</td>
+<td>ETH</td>
+</tr>
+<tr>
+<td>72</td>
+<td>Falkland Islands</td>
+<td>FK</td>
+<td>FLK</td>
+</tr>
+<tr>
+<td>73</td>
+<td>Faroe Islands</td>
+<td>FO</td>
+<td>FRO</td>
+</tr>
+<tr>
+<td>74</td>
+<td>Fiji</td>
+<td>FJ</td>
+<td>FJI</td>
+</tr>
+<tr>
+<td>75</td>
+<td>Finland</td>
+<td>FI</td>
+<td>FIN</td>
+</tr>
+<tr>
+<td>76</td>
+<td>France</td>
+<td>FR</td>
+<td>FRA</td>
+</tr>
+<tr>
+<td>77</td>
+<td>French Guiana</td>
+<td>GF</td>
+<td>GUF</td>
+</tr>
+<tr>
+<td>78</td>
+<td>French Polynesia</td>
+<td>PF</td>
+<td>PYF</td>
+</tr>
+<tr>
+<td>79</td>
+<td>French Southern Territories</td>
+<td>TF</td>
+<td>ATF</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Gabon</td>
+<td>GA</td>
+<td>GAB</td>
+</tr>
+<tr>
+<td>81</td>
+<td>Gambia</td>
+<td>GM</td>
+<td>GMB</td>
+</tr>
+<tr>
+<td>82</td>
+<td>Georgia</td>
+<td>GE</td>
+<td>GEO</td>
+</tr>
+<tr>
+<td>83</td>
+<td>Germany</td>
+<td>DE</td>
+<td>DEU</td>
+</tr>
+<tr>
+<td>84</td>
+<td>Ghana</td>
+<td>GH</td>
+<td>GHA</td>
+</tr>
+<tr>
+<td>85</td>
+<td>Gibraltar</td>
+<td>GI</td>
+<td>GIB</td>
+</tr>
+<tr>
+<td>86</td>
+<td>Greece</td>
+<td>GR</td>
+<td>GRC</td>
+</tr>
+<tr>
+<td>87</td>
+<td>Greenland</td>
+<td>GL</td>
+<td>GRL</td>
+</tr>
+<tr>
+<td>88</td>
+<td>Grenada</td>
+<td>GD</td>
+<td>GRD</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Guadeloupe</td>
+<td>GP</td>
+<td>GLP</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Guam</td>
+<td>GU</td>
+<td>GUM</td>
+</tr>
+<tr>
+<td>91</td>
+<td>Guatemala</td>
+<td>GT</td>
+<td>GTM</td>
+</tr>
+<tr>
+<td>92</td>
+<td>Guernsey</td>
+<td>GG</td>
+<td>GGY</td>
+</tr>
+<tr>
+<td>93</td>
+<td>Guinea</td>
+<td>GN</td>
+<td>GIN</td>
+</tr>
+<tr>
+<td>94</td>
+<td>Guinea-Bissau</td>
+<td>GW</td>
+<td>GNB</td>
+</tr>
+<tr>
+<td>95</td>
+<td>Guyana</td>
+<td>GY</td>
+<td>GUY</td>
+</tr>
+<tr>
+<td>96</td>
+<td>Haiti</td>
+<td>HT</td>
+<td>HTI</td>
+</tr>
+<tr>
+<td>97</td>
+<td>Heard &amp; McDonald Islands</td>
+<td>HM</td>
+<td>HMD</td>
+</tr>
+<tr>
+<td>98</td>
+<td>Honduras</td>
+<td>HN</td>
+<td>HND</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Hong Kong</td>
+<td>HK</td>
+<td>HKG</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Hungary</td>
+<td>HU</td>
+<td>HUN</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Iceland</td>
+<td>IS</td>
+<td>ISL</td>
+</tr>
+<tr>
+<td>102</td>
+<td>India</td>
+<td>IN</td>
+<td>IND</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Indonesia</td>
+<td>ID</td>
+<td>IDN</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Iran</td>
+<td>IR</td>
+<td>IRN</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Iraq</td>
+<td>IQ</td>
+<td>IRQ</td>
+</tr>
+<tr>
+<td>106</td>
+<td>Ireland</td>
+<td>IE</td>
+<td>IRL</td>
+</tr>
+<tr>
+<td>107</td>
+<td>Isle of Man</td>
+<td>IM</td>
+<td>IMN</td>
+</tr>
+<tr>
+<td>108</td>
+<td>Israel</td>
+<td>IL</td>
+<td>ISR</td>
+</tr>
+<tr>
+<td>109</td>
+<td>Italy</td>
+<td>IT</td>
+<td>ITA</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Jamaica</td>
+<td>JM</td>
+<td>JAM</td>
+</tr>
+<tr>
+<td>111</td>
+<td>Japan</td>
+<td>JP</td>
+<td>JPN</td>
+</tr>
+<tr>
+<td>112</td>
+<td>Jersey</td>
+<td>JE</td>
+<td>JEY</td>
+</tr>
+<tr>
+<td>113</td>
+<td>Jordan</td>
+<td>JO</td>
+<td>JOR</td>
+</tr>
+<tr>
+<td>114</td>
+<td>Kazakhstan</td>
+<td>KZ</td>
+<td>KAZ</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Kenya</td>
+<td>KE</td>
+<td>KEN</td>
+</tr>
+<tr>
+<td>116</td>
+<td>Kiribati</td>
+<td>KI</td>
+<td>KIR</td>
+</tr>
+<tr>
+<td>117</td>
+<td>Kuwait</td>
+<td>KW</td>
+<td>KWT</td>
+</tr>
+<tr>
+<td>118</td>
+<td>Kyrgyzstan</td>
+<td>KG</td>
+<td>KGZ</td>
+</tr>
+<tr>
+<td>119</td>
+<td>Laos</td>
+<td>LA</td>
+<td>LAO</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Latvia</td>
+<td>LV</td>
+<td>LVA</td>
+</tr>
+<tr>
+<td>121</td>
+<td>Lebanon</td>
+<td>LB</td>
+<td>LBN</td>
+</tr>
+<tr>
+<td>122</td>
+<td>Lesotho</td>
+<td>LS</td>
+<td>LSO</td>
+</tr>
+<tr>
+<td>123</td>
+<td>Liberia</td>
+<td>LR</td>
+<td>LBR</td>
+</tr>
+<tr>
+<td>124</td>
+<td>Libya</td>
+<td>LY</td>
+<td>LBY</td>
+</tr>
+<tr>
+<td>125</td>
+<td>Liechtenstein</td>
+<td>LI</td>
+<td>LIE</td>
+</tr>
+<tr>
+<td>126</td>
+<td>Lithuania</td>
+<td>LT</td>
+<td>LTU</td>
+</tr>
+<tr>
+<td>127</td>
+<td>Luxembourg</td>
+<td>LU</td>
+<td>LUX</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Macau</td>
+<td>MO</td>
+<td>MAC</td>
+</tr>
+<tr>
+<td>129</td>
+<td>Macedonia</td>
+<td>MK</td>
+<td>MKD</td>
+</tr>
+<tr>
+<td>130</td>
+<td>Madagascar</td>
+<td>MG</td>
+<td>MDG</td>
+</tr>
+<tr>
+<td>131</td>
+<td>Malawi</td>
+<td>MW</td>
+<td>MWI</td>
+</tr>
+<tr>
+<td>132</td>
+<td>Malaysia</td>
+<td>MY</td>
+<td>MYS</td>
+</tr>
+<tr>
+<td>133</td>
+<td>Maldives</td>
+<td>MV</td>
+<td>MDV</td>
+</tr>
+<tr>
+<td>134</td>
+<td>Mali</td>
+<td>ML</td>
+<td>MLI</td>
+</tr>
+<tr>
+<td>135</td>
+<td>Malta</td>
+<td>MT</td>
+<td>MLT</td>
+</tr>
+<tr>
+<td>136</td>
+<td>Marshall Islands</td>
+<td>MH</td>
+<td>MHL</td>
+</tr>
+<tr>
+<td>137</td>
+<td>Martinique</td>
+<td>MQ</td>
+<td>MTQ</td>
+</tr>
+<tr>
+<td>138</td>
+<td>Mauritania</td>
+<td>MR</td>
+<td>MRT</td>
+</tr>
+<tr>
+<td>139</td>
+<td>Mauritius</td>
+<td>MU</td>
+<td>MUS</td>
+</tr>
+<tr>
+<td>140</td>
+<td>Mayotte</td>
+<td>YT</td>
+<td>MYT</td>
+</tr>
+<tr>
+<td>141</td>
+<td>Mexico</td>
+<td>MX</td>
+<td>MEX</td>
+</tr>
+<tr>
+<td>142</td>
+<td>Micronesia</td>
+<td>FM</td>
+<td>FSM</td>
+</tr>
+<tr>
+<td>143</td>
+<td>Moldova</td>
+<td>MD</td>
+<td>MDA</td>
+</tr>
+<tr>
+<td>144</td>
+<td>Monaco</td>
+<td>MC</td>
+<td>MCO</td>
+</tr>
+<tr>
+<td>145</td>
+<td>Mongolia</td>
+<td>MN</td>
+<td>MNG</td>
+</tr>
+<tr>
+<td>146</td>
+<td>Montenegro</td>
+<td>ME</td>
+<td>MNE</td>
+</tr>
+<tr>
+<td>147</td>
+<td>Montserrat</td>
+<td>MS</td>
+<td>MSR</td>
+</tr>
+<tr>
+<td>148</td>
+<td>Morocco</td>
+<td>MA</td>
+<td>MAR</td>
+</tr>
+<tr>
+<td>149</td>
+<td>Mozambique</td>
+<td>MZ</td>
+<td>MOZ</td>
+</tr>
+<tr>
+<td>150</td>
+<td>Myanmar</td>
+<td>MM</td>
+<td>MMR</td>
+</tr>
+<tr>
+<td>151</td>
+<td>Namibia</td>
+<td>NA</td>
+<td>NAM</td>
+</tr>
+<tr>
+<td>152</td>
+<td>Nauru</td>
+<td>NR</td>
+<td>NRU</td>
+</tr>
+<tr>
+<td>153</td>
+<td>Nepal</td>
+<td>NP</td>
+<td>NPL</td>
+</tr>
+<tr>
+<td>154</td>
+<td>Netherlands</td>
+<td>NL</td>
+<td>NLD</td>
+</tr>
+<tr>
+<td>155</td>
+<td>New Caledonia</td>
+<td>NC</td>
+<td>NCL</td>
+</tr>
+<tr>
+<td>156</td>
+<td>New Zealand</td>
+<td>NZ</td>
+<td>NZL</td>
+</tr>
+<tr>
+<td>157</td>
+<td>Nicaragua</td>
+<td>NI</td>
+<td>NIC</td>
+</tr>
+<tr>
+<td>158</td>
+<td>Niger</td>
+<td>NE</td>
+<td>NER</td>
+</tr>
+<tr>
+<td>159</td>
+<td>Nigeria</td>
+<td>NG</td>
+<td>NGA</td>
+</tr>
+<tr>
+<td>160</td>
+<td>Niue</td>
+<td>NU</td>
+<td>NIU</td>
+</tr>
+<tr>
+<td>161</td>
+<td>Norfolk Island</td>
+<td>NF</td>
+<td>NFK</td>
+</tr>
+<tr>
+<td>162</td>
+<td>North Korea</td>
+<td>KP</td>
+<td>PRK</td>
+</tr>
+<tr>
+<td>163</td>
+<td>Northern Mariana Islands</td>
+<td>MP</td>
+<td>MNP</td>
+</tr>
+<tr>
+<td>164</td>
+<td>Norway</td>
+<td>NO</td>
+<td>NOR</td>
+</tr>
+<tr>
+<td>165</td>
+<td>Oman</td>
+<td>OM</td>
+<td>OMN</td>
+</tr>
+<tr>
+<td>166</td>
+<td>Pakistan</td>
+<td>PK</td>
+<td>PAK</td>
+</tr>
+<tr>
+<td>167</td>
+<td>Palau</td>
+<td>PW</td>
+<td>PLW</td>
+</tr>
+<tr>
+<td>168</td>
+<td>Palestine</td>
+<td>PS</td>
+<td>PSE</td>
+</tr>
+<tr>
+<td>169</td>
+<td>Panama</td>
+<td>PA</td>
+<td>PAN</td>
+</tr>
+<tr>
+<td>170</td>
+<td>Papua New Guinea</td>
+<td>PG</td>
+<td>PNG</td>
+</tr>
+<tr>
+<td>171</td>
+<td>Paraguay</td>
+<td>PY</td>
+<td>PRY</td>
+</tr>
+<tr>
+<td>172</td>
+<td>Peru</td>
+<td>PE</td>
+<td>PER</td>
+</tr>
+<tr>
+<td>173</td>
+<td>Philippines</td>
+<td>PH</td>
+<td>PHL</td>
+</tr>
+<tr>
+<td>174</td>
+<td>Pitcairn Islands</td>
+<td>PN</td>
+<td>PCN</td>
+</tr>
+<tr>
+<td>175</td>
+<td>Poland</td>
+<td>PL</td>
+<td>POL</td>
+</tr>
+<tr>
+<td>176</td>
+<td>Portugal</td>
+<td>PT</td>
+<td>PRT</td>
+</tr>
+<tr>
+<td>177</td>
+<td>Puerto Rico</td>
+<td>PR</td>
+<td>PRI</td>
+</tr>
+<tr>
+<td>178</td>
+<td>Qatar</td>
+<td>QA</td>
+<td>QAT</td>
+</tr>
+<tr>
+<td>179</td>
+<td>Romania</td>
+<td>RO</td>
+<td>ROU</td>
+</tr>
+<tr>
+<td>180</td>
+<td>Russia</td>
+<td>RU</td>
+<td>RUS</td>
+</tr>
+<tr>
+<td>181</td>
+<td>Rwanda</td>
+<td>RW</td>
+<td>RWA</td>
+</tr>
+<tr>
+<td>182</td>
+<td>Réunion</td>
+<td>RE</td>
+<td>REU</td>
+</tr>
+<tr>
+<td>183</td>
+<td>Samoa</td>
+<td>WS</td>
+<td>WSM</td>
+</tr>
+<tr>
+<td>184</td>
+<td>San Marino</td>
+<td>SM</td>
+<td>SMR</td>
+</tr>
+<tr>
+<td>185</td>
+<td>Saudi Arabia</td>
+<td>SA</td>
+<td>SAU</td>
+</tr>
+<tr>
+<td>186</td>
+<td>Senegal</td>
+<td>SN</td>
+<td>SEN</td>
+</tr>
+<tr>
+<td>187</td>
+<td>Serbia</td>
+<td>RS</td>
+<td>SRB</td>
+</tr>
+<tr>
+<td>188</td>
+<td>Seychelles</td>
+<td>SC</td>
+<td>SYC</td>
+</tr>
+<tr>
+<td>189</td>
+<td>Sierra Leone</td>
+<td>SL</td>
+<td>SLE</td>
+</tr>
+<tr>
+<td>190</td>
+<td>Singapore</td>
+<td>SG</td>
+<td>SGP</td>
+</tr>
+<tr>
+<td>191</td>
+<td>Sint Maarten</td>
+<td>SX</td>
+<td>SXM</td>
+</tr>
+<tr>
+<td>192</td>
+<td>Slovakia</td>
+<td>SK</td>
+<td>SVK</td>
+</tr>
+<tr>
+<td>193</td>
+<td>Slovenia</td>
+<td>SI</td>
+<td>SVN</td>
+</tr>
+<tr>
+<td>194</td>
+<td>Solomon Islands</td>
+<td>SB</td>
+<td>SLB</td>
+</tr>
+<tr>
+<td>195</td>
+<td>Somalia</td>
+<td>SO</td>
+<td>SOM</td>
+</tr>
+<tr>
+<td>196</td>
+<td>South Africa</td>
+<td>ZA</td>
+<td>ZAF</td>
+</tr>
+<tr>
+<td>197</td>
+<td>South Georgia &amp; South Sandwich Islands</td>
+<td>GS</td>
+<td>SGS</td>
+</tr>
+<tr>
+<td>198</td>
+<td>South Korea</td>
+<td>KR</td>
+<td>KOR</td>
+</tr>
+<tr>
+<td>199</td>
+<td>South Sudan</td>
+<td>SS</td>
+<td>SSD</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Spain</td>
+<td>ES</td>
+<td>ESP</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Sri Lanka</td>
+<td>LK</td>
+<td>LKA</td>
+</tr>
+<tr>
+<td>202</td>
+<td>St. Barthélemy</td>
+<td>BL</td>
+<td>BLM</td>
+</tr>
+<tr>
+<td>203</td>
+<td>St. Helena</td>
+<td>SH</td>
+<td>SHN</td>
+</tr>
+<tr>
+<td>204</td>
+<td>St. Kitts &amp; Nevis</td>
+<td>KN</td>
+<td>KNA</td>
+</tr>
+<tr>
+<td>205</td>
+<td>St. Lucia</td>
+<td>LC</td>
+<td>LCA</td>
+</tr>
+<tr>
+<td>206</td>
+<td>St. Martin</td>
+<td>MF</td>
+<td>MAF</td>
+</tr>
+<tr>
+<td>207</td>
+<td>St. Pierre &amp; Miquelon</td>
+<td>PM</td>
+<td>SPM</td>
+</tr>
+<tr>
+<td>208</td>
+<td>St. Vincent &amp; Grenadines</td>
+<td>VC</td>
+<td>VCT</td>
+</tr>
+<tr>
+<td>209</td>
+<td>Sudan</td>
+<td>SD</td>
+<td>SDN</td>
+</tr>
+<tr>
+<td>210</td>
+<td>Suriname</td>
+<td>SR</td>
+<td>SUR</td>
+</tr>
+<tr>
+<td>211</td>
+<td>Svalbard &amp; Jan Mayen</td>
+<td>SJ</td>
+<td>SJM</td>
+</tr>
+<tr>
+<td>212</td>
+<td>Swaziland</td>
+<td>SZ</td>
+<td>SWZ</td>
+</tr>
+<tr>
+<td>213</td>
+<td>Sweden</td>
+<td>SE</td>
+<td>SWE</td>
+</tr>
+<tr>
+<td>214</td>
+<td>Switzerland</td>
+<td>CH</td>
+<td>CHE</td>
+</tr>
+<tr>
+<td>215</td>
+<td>Syria</td>
+<td>SY</td>
+<td>SYR</td>
+</tr>
+<tr>
+<td>216</td>
+<td>São Tomé &amp; Príncipe</td>
+<td>ST</td>
+<td>STP</td>
+</tr>
+<tr>
+<td>217</td>
+<td>Taiwan</td>
+<td>TW</td>
+<td>TWN</td>
+</tr>
+<tr>
+<td>218</td>
+<td>Tajikistan</td>
+<td>TJ</td>
+<td>TJK</td>
+</tr>
+<tr>
+<td>219</td>
+<td>Tanzania</td>
+<td>TZ</td>
+<td>TZA</td>
+</tr>
+<tr>
+<td>220</td>
+<td>Thailand</td>
+<td>TH</td>
+<td>THA</td>
+</tr>
+<tr>
+<td>221</td>
+<td>Timor-Leste</td>
+<td>TL</td>
+<td>TLS</td>
+</tr>
+<tr>
+<td>222</td>
+<td>Togo</td>
+<td>TG</td>
+<td>TGO</td>
+</tr>
+<tr>
+<td>223</td>
+<td>Tokelau</td>
+<td>TK</td>
+<td>TKL</td>
+</tr>
+<tr>
+<td>224</td>
+<td>Tonga</td>
+<td>TO</td>
+<td>TON</td>
+</tr>
+<tr>
+<td>225</td>
+<td>Trinidad &amp; Tobago</td>
+<td>TT</td>
+<td>TTO</td>
+</tr>
+<tr>
+<td>226</td>
+<td>Tunisia</td>
+<td>TN</td>
+<td>TUN</td>
+</tr>
+<tr>
+<td>227</td>
+<td>Turkey</td>
+<td>TR</td>
+<td>TUR</td>
+</tr>
+<tr>
+<td>228</td>
+<td>Turkmenistan</td>
+<td>TM</td>
+<td>TKM</td>
+</tr>
+<tr>
+<td>229</td>
+<td>Turks &amp; Caicos Islands</td>
+<td>TC</td>
+<td>TCA</td>
+</tr>
+<tr>
+<td>230</td>
+<td>Tuvalu</td>
+<td>TV</td>
+<td>TUV</td>
+</tr>
+<tr>
+<td>231</td>
+<td>U.S. Outlying Islands</td>
+<td>UM</td>
+<td>UMI</td>
+</tr>
+<tr>
+<td>232</td>
+<td>U.S. Virgin Islands</td>
+<td>VI</td>
+<td>VIR</td>
+</tr>
+<tr>
+<td>233</td>
+<td>United Kingdom</td>
+<td>GB</td>
+<td>GBR</td>
+</tr>
+<tr>
+<td>234</td>
+<td>United States</td>
+<td>US</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>235</td>
+<td>Uganda</td>
+<td>UG</td>
+<td>UGA</td>
+</tr>
+<tr>
+<td>236</td>
+<td>Ukraine</td>
+<td>UA</td>
+<td>UKR</td>
+</tr>
+<tr>
+<td>237</td>
+<td>United Arab Emirates</td>
+<td>AE</td>
+<td>ARE</td>
+</tr>
+<tr>
+<td>238</td>
+<td>Uruguay</td>
+<td>UY</td>
+<td>URY</td>
+</tr>
+<tr>
+<td>239</td>
+<td>Uzbekistan</td>
+<td>UZ</td>
+<td>UZB</td>
+</tr>
+<tr>
+<td>240</td>
+<td>Vanuatu</td>
+<td>VU</td>
+<td>VUT</td>
+</tr>
+<tr>
+<td>241</td>
+<td>Vatican City</td>
+<td>VA</td>
+<td>VAT</td>
+</tr>
+<tr>
+<td>242</td>
+<td>Venezuela</td>
+<td>VE</td>
+<td>VEN</td>
+</tr>
+<tr>
+<td>243</td>
+<td>Vietnam</td>
+<td>VN</td>
+<td>VNM</td>
+</tr>
+<tr>
+<td>244</td>
+<td>Wallis &amp; Futuna</td>
+<td>WF</td>
+<td>WLF</td>
+</tr>
+<tr>
+<td>245</td>
+<td>Western Sahara</td>
+<td>EH</td>
+<td>ESH</td>
+</tr>
+<tr>
+<td>246</td>
+<td>Yemen</td>
+<td>YE</td>
+<td>YEM</td>
+</tr>
+<tr>
+<td>247</td>
+<td>Zambia</td>
+<td>ZM</td>
+<td>ZMB</td>
+</tr>
+<tr>
+<td>248</td>
+<td>Zimbabwe</td>
+<td>ZW</td>
+<td>ZWE</td>
+</tr>
+<tr>
+<td>249</td>
+<td>Åland Islands</td>
+<td>AX</td>
+<td>ALA</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+<pre class="highlight plaintext"><code>401 Unauthorized
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GEN-UNAUTHORIZED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You don't have enough privileges to perform this action."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Biz Airlines uses standard HTTP status codes to communicate errors</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>OK - Everything went as planned.</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>Bad Request - Something in your header or request body was malformed.</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Unauthorized - Necessary credentials were either missing or invalid.</td>
+</tr>
+<tr>
+<td><strong>403</strong></td>
+<td>Forbidden - Your credentials are valid but you don&rsquo;t have access to the requested resource.</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>Not Found - The requested object doesn&rsquo;t exist.</td>
+</tr>
+<tr>
+<td><strong>500+</strong></td>
+<td>Server Errors - Something went wrong on our end.</td>
+</tr>
+</tbody></table>
+
+<p>In addition to the status code, the HTTP body of the response will also contain a JSON representation of the error.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
