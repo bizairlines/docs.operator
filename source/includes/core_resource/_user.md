@@ -1,8 +1,7 @@
 # Users
 ## Get
-```
-GET /v1/users/{id}
-```
+> `GET /v1/users/{id}`
+
 ```shell
 $ curl '/v1/users/{$id}' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
@@ -12,9 +11,8 @@ $ curl '/v1/users/{$id}' \
 Retrieve an user information, such as company, country and address.
 
 ## Update
-```
-PUT /v1/users/{$id}
-```
+> `PUT /v1/users/{$id}`
+
 ```shell
 $ curl -XPUT '/v1/users/{$id}' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
@@ -39,9 +37,8 @@ It's not necessary to send all the parameters in the same request.
 | hourly_salary    | User's hourly salary (USD).                               | float  |
 
 ## Delete
-```
-DELETE /v1/users/{$id}
-```
+> `DELETE /v1/users/{$id}`
+
 ```shell
 $ curl -XDELETE '/v1/users/{$id}' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
@@ -51,9 +48,8 @@ $ curl -XDELETE '/v1/users/{$id}' \
 Delete user's account.
 
 ## Avatar
-```
-POST /v1/users/{$id}/avatar
-```
+> `POST /v1/users/{$id}/avatar`
+
 ```shell
 $ curl -XPOST '/v1/users/{$id}/avatar' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
@@ -66,9 +62,8 @@ $ curl -XPOST '/v1/users/{$id}/avatar' \
 | image     | *yes*    | A valid **PNG** or **JPG** file. | binary |
 
 ## Change password
-```
-PUT /v1/users/{$id}/password
-```
+> `PUT /v1/users/{$id}/password`
+
 ```shell
 $ curl -XPUT '/v1/users/{$id}/password' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \

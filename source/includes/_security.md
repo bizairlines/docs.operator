@@ -1,8 +1,7 @@
 # Security
 ## Create account
-```
-POST /v1/security/account
-```
+> `POST /v1/security/account`
+
 ```shell
 $ curl -XPOST '/v1/security/account' \
     -H 'Content-type: application/json' \
@@ -24,9 +23,8 @@ $ curl -XPOST '/v1/security/account' \
 | hourly_salary | *no*     | User's hourly salary (USD).                               | float  |
 
 ## Login
-```
-POST /v1/security/login/app
-```
+> `POST /v1/security/login/app`
+
 ```
 {
     "email": "name@tld.com",
@@ -54,9 +52,8 @@ The reset password contains two steps process:
 2. Reset password.
 
 ### Generate code
-```
-POST /v1/security/password/reset
-```
+> `POST /v1/security/password/reset`
+
 ```shell
 $ curl -XPOST '/v1/security/password/reset' \
     -H 'Content-type: application/json' \
@@ -72,9 +69,8 @@ This code is valid for 1 day and will be sent to a registered email.
 | email     | *yes*    | The user’s email address. | string |
 
 ### Reset password
-```
-PUT /v1/security/password/reset
-```
+> `PUT /v1/security/password/reset`
+
 ```shell
 $ curl -XPUT '/v1/security/password/reset' \
     -H 'Content-type: application/json' \

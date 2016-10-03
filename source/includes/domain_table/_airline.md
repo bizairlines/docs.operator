@@ -1,7 +1,6 @@
 ## Airlines
-```
-GET /v1/airlines/autocomplete
-```
+> `GET /v1/airlines/autocomplete`
+
 ```shell
 $ curl '/v1/airlines/autocomplete' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
@@ -10,9 +9,9 @@ $ curl '/v1/airlines/autocomplete' \
     -d category[]='jet-shuttle' \
     -d category[]='charter-operator'
 ```
-```
-Example response
-```
+
+> Example response
+
 ```
 {
   "data": [
@@ -90,7 +89,7 @@ Example response
 }
 ```
 
-Return the list of registered airlines. The airlines are available in 3 categories:
+Search for registered airlines. The airlines are available in 3 categories:
 
 * `airline`
 * `jet-shuttle`

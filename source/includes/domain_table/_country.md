@@ -1,15 +1,13 @@
 ## Countries
-```
-GET /v1/countries
-```
+> `GET /v1/countries`
+
 ```shell
 $ curl '/v1/countries' \
     -H 'Content-type: application/json'
 ```
 
-```
-Example response
-```
+> Example response
+
 ```
 {
   "data": [

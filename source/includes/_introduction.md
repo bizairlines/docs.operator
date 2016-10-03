@@ -5,9 +5,8 @@ The Biz Airlines API is designed according to [REST](https://en.wikipedia.org/wi
 The API accepts JSON in request bodies and requires that the `content-type: application/json` header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may return single objects or arrays of objects, nested within the response object.
 
 ## Authentication
-```
-HTTP Example
-```
+> HTTP Example
+
 ```
 POST /v1/me HTTP/1.1
 Host: api.bizairlines.com

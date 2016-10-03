@@ -1,16 +1,14 @@
 ## Aircraft
-```
-GET /v1/aircraft/autocomplete
-```
+> `GET /v1/aircraft/autocomplete`
+
 ```shell
 $ curl '/v1/aircraft/autocomplete' \
     -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
     -H 'Content-type: application/json' \
     -d s="learj"
 ```
-```
-Example response
-```
+> Example response
+
 ```
 {
   "data": [
