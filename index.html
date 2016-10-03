@@ -55,8 +55,10 @@
 <p>The API accepts JSON in request bodies and requires that the <code class="prettyprint">content-type: application/json</code> header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may return single objects or arrays of objects, nested within the response object.</p>
 
 <h2 id="authentication">Authentication</h2>
-<pre class="highlight plaintext"><code>HTTP Example
-</code></pre>
+
+<blockquote>
+<p>HTTP Example</p>
+</blockquote>
 <pre class="highlight plaintext"><code>POST /v1/me HTTP/1.1
 Host: api.bizairlines.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuYml6YWlybGluZXMuY29tXC8iLCJhdWQiOiJodHRwOlwvXC9hcGkuYml6YWlybGluZXMuY29tXC8iLCJpYXQiOjE0NzA0ODkyNzMsIm5iZiI6MTQ3MDQ4OTI3MywiZXhwIjoxNzg2MDIyMDczLCJpZCI6MX0.jlWjsSKMPt1krq86VtYPDzc5tKcn68yVT2fAhoxCBfVjA_NHc3uOVeAXN1MiVcaUU0wIzOdFP8hDz9zcWcgBkA
@@ -68,8 +70,10 @@ Content-Type: application/json
           <h1 id="security">Security</h1>
 
 <h2 id="create-account">Create account</h2>
-<pre class="highlight plaintext"><code>POST /v1/security/account
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">POST /v1/security/account</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/security/account'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
     -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span> <span class="se">\</span>
@@ -132,8 +136,10 @@ Content-Type: application/json
 </tbody></table>
 
 <h2 id="login">Login</h2>
-<pre class="highlight plaintext"><code>POST /v1/security/login/app
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">POST /v1/security/login/app</code></p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name@tld.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="w">
@@ -179,8 +185,10 @@ Content-Type: application/json
 </ol>
 
 <h3 id="generate-code">Generate code</h3>
-<pre class="highlight plaintext"><code>POST /v1/security/password/reset
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">POST /v1/security/password/reset</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/security/password/reset'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
     -d <span class="nv">email</span><span class="o">=</span><span class="s1">'john@doe.com'</span>
@@ -207,8 +215,10 @@ Content-Type: application/json
 </tbody></table>
 
 <h3 id="reset-password">Reset password</h3>
-<pre class="highlight plaintext"><code>PUT /v1/security/password/reset
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">PUT /v1/security/password/reset</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/security/password/reset'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
     -d <span class="nv">token</span><span class="o">=</span><span class="s1">'123456'</span> <span class="se">\</span>
@@ -256,8 +266,10 @@ Content-Type: application/json
           <h1 id="users">Users</h1>
 
 <h2 id="get">Get</h2>
-<pre class="highlight plaintext"><code>GET /v1/users/{id}
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">GET /v1/users/{id}</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span>
@@ -266,8 +278,10 @@ Content-Type: application/json
 <p>Retrieve an user information, such as company, country and address.</p>
 
 <h2 id="update">Update</h2>
-<pre class="highlight plaintext"><code>PUT /v1/users/{$id}
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">PUT /v1/users/{$id}</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
@@ -317,8 +331,10 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 </tbody></table>
 
 <h2 id="delete">Delete</h2>
-<pre class="highlight plaintext"><code>DELETE /v1/users/{$id}
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">DELETE /v1/users/{$id}</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XDELETE <span class="s1">'/v1/users/{$id}'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span>
@@ -327,8 +343,10 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 <p>Delete user&rsquo;s account.</p>
 
 <h2 id="avatar">Avatar</h2>
-<pre class="highlight plaintext"><code>POST /v1/users/{$id}/avatar
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">POST /v1/users/{$id}/avatar</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/users/{$id}/avatar'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
@@ -352,8 +370,10 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 </tbody></table>
 
 <h2 id="change-password">Change password</h2>
-<pre class="highlight plaintext"><code>PUT /v1/users/{$id}/password
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">PUT /v1/users/{$id}/password</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -XPUT <span class="s1">'/v1/users/{$id}/password'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
@@ -379,15 +399,19 @@ It&rsquo;s not necessary to send all the parameters in the same request.
           <h1 id="domain-tables">Domain tables</h1>
 
           <h2 id="aircraft">Aircraft</h2>
-<pre class="highlight plaintext"><code>GET /v1/aircraft/autocomplete
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">GET /v1/aircraft/autocomplete</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/aircraft/autocomplete'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
     -d <span class="nv">s</span><span class="o">=</span><span class="s2">"learj"</span>
 </code></pre>
-<pre class="highlight plaintext"><code>Example response
-</code></pre>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -459,8 +483,10 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 </tbody></table>
 
           <h2 id="airlines">Airlines</h2>
-<pre class="highlight plaintext"><code>GET /v1/airlines/autocomplete
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">GET /v1/airlines/autocomplete</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/airlines/autocomplete'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
@@ -468,8 +494,10 @@ It&rsquo;s not necessary to send all the parameters in the same request.
     -d category[]<span class="o">=</span><span class="s1">'jet-shuttle'</span> <span class="se">\</span>
     -d category[]<span class="o">=</span><span class="s1">'charter-operator'</span>
 </code></pre>
-<pre class="highlight plaintext"><code>Example response
-</code></pre>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -546,7 +574,7 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Return the list of registered airlines. The airlines are available in 3 categories:</p>
+<p>Search for registered airlines. The airlines are available in 3 categories:</p>
 
 <ul>
 <li><code class="prettyprint">airline</code></li>
@@ -581,13 +609,17 @@ In order to get the proper result you must sent the attribute &ldquo;category&rd
 </tbody></table>
 
           <h2 id="countries">Countries</h2>
-<pre class="highlight plaintext"><code>GET /v1/countries
-</code></pre>
+
+<blockquote>
+<p><code class="prettyprint">GET /v1/countries</code></p>
+</blockquote>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/countries'</span> <span class="se">\</span>
     -H <span class="s1">'Content-type: application/json'</span>
 </code></pre>
-<pre class="highlight plaintext"><code>Example response
-</code></pre>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
