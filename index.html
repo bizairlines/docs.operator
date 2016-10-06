@@ -395,6 +395,240 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 </tr>
 </tbody></table>
 
+          <h1 id="itineraries">Itineraries</h1>
+
+<h2 id="search">Search</h2>
+
+<blockquote>
+<p><code class="prettyprint">POST /v1/itineraries/search</code></p>
+</blockquote>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -XPOST <span class="s1">'/v1/itineraries/search'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'{"departure_airport":"MCO","arrive_airport":"OPF","departure_at":[{"condition":"&gt;=","value":"2016-10-17 00:00:00"},{"condition":"&lt;=","value":"2016-10-17 23:59:59"}],"available_seats":[{"condition":"&gt;=","value":1}]}'</span>
+</code></pre>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MCO-OPF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fare"</span><span class="p">:</span><span class="w"> </span><span class="mi">799</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"important_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please pay attention to the departure locations below.\n\nOutbound flight information:\nDeparts from  Atlantic Aviation MCO - 9245 Tradeport Dr, Orlando, FL 32827, United States.\nArrives at 14201 NW 42nd Ave, Opa-locka, FL 33054, United States.\nOperated by: BizConnect Partner\n\nTransportation agreement (if any): http://bizairlines.com/_legal/operators/bizconnect.pdf\n\nExtra information: Check-in 15 minutes prior to the flight."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cancellation_policies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fare is Non-refundable. No-show is non-refundable.\n\nItinerary change fees: Changes NOT allowed.\n\nBy purchasing this ticket you agreed to the following cancellation policy: STANDARD JET\n\nPLEASE READ ALL THE CANCELLATION POLICIES BELOW:\n-------------\n50% OF TICKET: Half of the price of the ticket will be refunded for this cancellation policy. Refund may take up to 14 days to appear in your statement. | STANDARD JET POLICY: The greater of $1,000 or full purchase price for cancellations within 24 hours from flight departure; $1,000 for cancellations between 72 and 24 hours from flight departure; $500 for cancellations between 72 hours and 7 days from flight departure. $250 for cancellations made more than 7 days prior to flight departure. | STANDARD AIRLINE POLICY: $250.00 will be charged to any cancellations regardless of ticket cost. The balance will be returned to your Credit Card in up to 10 week days. Cancellations within 24 hours from purchase might be eligible for full refund. | FULLY-REFUNDABLE POLICY. Full cost of ticket will be returned to your Credit Card in up to 10 week days.\n-------------\n\nFor further assistance, please call +1 (877) 331-2412."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"luggage_policies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For this itinerary you are allowed: One standard sized carry-on item of less than 7kg (15lbs) and one personal item (laptop, purse, backpack)., One 23kg (51lbs) allowed per passenger.  Please call +1 (877) 331-2412 if you need extra luggage purchase."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liability_insurance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$20,000,000."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_round_trip"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_sold_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-04 22:43:51"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-05 13:44:29"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dad08178-1d90-4bfa-b253-69ffeaead4ed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"flight"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fd7a9a26-3a49-4d3d-a988-d731535470d5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"departure_airport"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orlando Intl"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orlando"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"iata_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MCO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/New_York"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"icao_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KMCO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.429394</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-81.308994</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"699acd23-c60c-45b2-b22a-c541874ebdee"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"arrive_airport"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opa Locka"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Miami"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"iata_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPF"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/New_York"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"icao_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KOPF"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">25.907</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-80.278389</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7dc2fc7-8d0e-4693-9386-ee4788f39dc1"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"flight_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shuttle"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"segment_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fare_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non-refundable"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BZ0001"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"minimum_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"blocked_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"available_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"insurance_policy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"recurrence"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"trip_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_quote"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_biz_connect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_sold_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_international_flight"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"departure_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-17T07:30:00-04:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"arrive_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-17T08:16:00-04:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-04 22:43:51"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-20 18:04:58"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+          </span><span class="s2">"fleet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a37f1798-5b9e-40bd-9081-2e7bd729c2e0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"airport"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orlando Intl"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orlando"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"iata_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MCO"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"timezone_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/New_York"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"icao_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KMCO"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.429394</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-81.308994</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"699acd23-c60c-45b2-b22a-c541874ebdee"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"fabrication_year"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"registration_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N01BIZ"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"crew_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"passenger_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"operation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"safety_rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"insurance_policy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cruise_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"auto_empty_leg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0001-11-30 00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0001-11-30 00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"aircraft"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">349</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Light Jet"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"crew_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"passanger_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"empty_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"max_takeoff_weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"wingspan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"fuselage_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"fuselage_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"wing_area"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"maximum_fuel_load"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"engine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"maximum_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"cruise_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"never_exceed_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"airline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">623</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Biz Airlines"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-05 10:17:19"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-05 10:17:23"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"upload"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"airline"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>departure_airport</td>
+<td><em>yes</em></td>
+<td>IATA Code from the origin airport.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>arrive_airport</td>
+<td><em>yes</em></td>
+<td>IATA Code from the destination airport.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td><em>no</em></td>
+<td>Return active flights. Default: <em>true</em></td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>is_biz_connect</td>
+<td><em>no</em></td>
+<td>Return only Biz Connect flights.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>is_international_flight</td>
+<td><em>no</em></td>
+<td>Return only international flights.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>departure_at</td>
+<td><em>no</em></td>
+<td>The departure date in <em>Y-m-d H:i:s</em> format.</td>
+<td>array, string</td>
+</tr>
+<tr>
+<td>arrive_at</td>
+<td><em>no</em></td>
+<td>The arrive date in <em>Y-m-d H:i:s</em> format.</td>
+<td>array, string</td>
+</tr>
+<tr>
+<td>available_seats</td>
+<td><em>no</em></td>
+<td>Flights with available seats.</td>
+<td>array, integer</td>
+</tr>
+<tr>
+<td>minimum_seats</td>
+<td><em>no</em></td>
+<td>Flights with minimum seats for ticketing.</td>
+<td>array, integer</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some parameters allow both array and integer/string values. If array is sent, it must have the following structure:
+    <code>
+    {
+        "condition":">=",
+        "value":""
+    }
+    </code>,
+where the <code>condition</code> accepts values like <code>>=</code>, <code>></code>, <code>=</code>, <code><</code> and <code><=</code>.
+</aside>
+
           <h1 id="domain-tables">Domain tables</h1>
 
           <h2 id="aircraft">Aircraft</h2>
