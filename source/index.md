@@ -11,6 +11,7 @@ includes:
   - introduction
   - security
   - core_resource/user
+  - core_resource/itinerary
   - domain_table
   - domain_table/aircraft
   - domain_table/airline
