@@ -860,6 +860,14 @@ In order to get the proper result you must sent the attribute &ldquo;category&rd
 <p>Example Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">8108</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">406</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[::protocol]://[::domain]:[::port]/v1/airports?page=4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[::protocol]://[::domain]:[::port]/v1/airports?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adana"</span><span class="p">,</span><span class="w">
@@ -876,22 +884,6 @@ In order to get the proper result you must sent the attribute &ldquo;category&rd
       </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.280388</span><span class="p">,</span><span class="w">
       </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7fdda9ce-340c-45ec-a0dd-acf34146f186"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adana-Incirlik Airbase"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Turkey"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adana"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"iata_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAB"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timezone_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Istanbul"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"icao_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KUAB"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">37.00028</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03 21:17:20"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.41833</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dd647f81-af50-4fae-ada9-9a1c774f903f"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -914,13 +906,13 @@ In order to get the proper result you must sent the attribute &ldquo;category&rd
 <tr>
 <td>sort</td>
 <td><em>no</em></td>
-<td>The column to sort the information.</td>
+<td>The column to sort the information. Default: <code class="prettyprint">id</code>.</td>
 <td>integer</td>
 </tr>
 <tr>
 <td>order</td>
 <td><em>no</em></td>
-<td>The direction to do the sorting. Available only <code class="prettyprint">asc</code> and <code class="prettyprint">desc</code> options</td>
+<td>The direction to do the sorting. Available only <code class="prettyprint">asc</code> and <code class="prettyprint">desc</code> options. Default: <code class="prettyprint">asc</code>.</td>
 <td>integer</td>
 </tr>
 </tbody></table>
