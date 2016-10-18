@@ -8,7 +8,7 @@ $ curl '/v1/airports' \
     -H 'Content-type: application/json' \
     -d sort='iata_code'
     -d order='desc'
-    -d page=20
+    -d page=2
 ```
 
 > Example Response

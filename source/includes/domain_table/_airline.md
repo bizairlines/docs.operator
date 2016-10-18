@@ -1,4 +1,48 @@
 ## Airlines
+### List/Table
+> `GET /v1/airlines`
+
+```shell
+$ curl '/v1/airlines' \
+    -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...' \
+    -H 'Content-type: application/json' \
+    -d sort='name'
+    -d order='desc'
+    -d page=2
+```
+
+> Example Response
+
+```
+{
+  "total": 8108,
+  "per_page": 20,
+  "current_page": 3,
+  "last_page": 406,
+  "next_page_url": "[::protocol]://[::domain]:[::port]/v1/airports?page=4",
+  "prev_page_url": "[::protocol]://[::domain]:[::port]/v1/airports?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 20,
+  "data": [
+    {
+      "id": 1,
+      "name": "Aer Lingus",
+      "category": "airline",
+      "created_at": "2016-08-03 21:17:21",
+      "updated_at": "2016-08-03 21:17:21"
+    }
+  ]
+}
+```
+
+| Parameter | Required | Description                                                                               | Format  |
+|-----------|----------|-------------------------------------------------------------------------------------------|---------|
+| page      | *no*     | The number of the page.                                                                   | integer |
+| sort      | *no*     | The column to sort the information. Default: `id`.                                        | integer |
+| order     | *no*     | The direction to do the sorting. Available only `asc` and `desc` options. Default: `asc`. | integer |
+
+### Autocomplete
 > `GET /v1/airlines/autocomplete`
 
 ```shell
