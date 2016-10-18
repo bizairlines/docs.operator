@@ -15,6 +15,14 @@ $ curl '/v1/airports' \
 
 ```
 {
+  "total": 8108,
+  "per_page": 20,
+  "current_page": 3,
+  "last_page": 406,
+  "next_page_url": "[::protocol]://[::domain]:[::port]/v1/airports?page=4",
+  "prev_page_url": "[::protocol]://[::domain]:[::port]/v1/airports?page=2",
+  "from": 41,
+  "to": 60,
   "data": [
     {
       "name": "Adana",
@@ -31,32 +39,16 @@ $ curl '/v1/airports' \
       "longitude": 35.280388,
       "is_active": true,
       "id": "7fdda9ce-340c-45ec-a0dd-acf34146f186"
-    },
-    {
-      "name": "Adana-Incirlik Airbase",
-      "country": "Turkey",
-      "city": "Adana",
-      "iata_code": "UAB",
-      "altitude": 500,
-      "timezone_offset": 2,
-      "timezone": "Europe/Istanbul",
-      "icao_code": "KUAB",
-      "latitude": 37.00028,
-      "created_at": "2016-08-03 21:17:20",
-      "updated_at": "2016-08-03 21:17:20",
-      "longitude": 35.41833,
-      "is_active": true,
-      "id": "dd647f81-af50-4fae-ada9-9a1c774f903f"
     }
   ]
 }
 ```
 
-| Parameter | Required | Description                         | Format  |
-|-----------|----------|-------------------------------------|---------|
-| page      | *no*     | The number of the page.                                                  | integer |
-| sort      | *no*     | The column to sort the information.                                      | integer |
-| order     | *no*     | The direction to do the sorting. Available only `asc` and `desc` options | integer |
+| Parameter | Required | Description                                                                               | Format  |
+|-----------|----------|-------------------------------------------------------------------------------------------|---------|
+| page      | *no*     | The number of the page.                                                                   | integer |
+| sort      | *no*     | The column to sort the information. Default: `id`.                                        | integer |
+| order     | *no*     | The direction to do the sorting. Available only `asc` and `desc` options. Default: `asc`. | integer |
 
 ### Autocomplete
 > `GET /v1/airports/autocomplete`
