@@ -191,8 +191,7 @@ Content-Type: application/json
 
 <p>Creates an account for operators.</p>
 
-<p>During this moment a fantasy company is created and the company will not be activated until the creator confirm the
-authenticity of the registered account.</p>
+<p>During this moment a fantasy company is created.</p>
 
 <table><thead>
 <tr>
@@ -503,6 +502,166 @@ It&rsquo;s not necessary to send all the parameters in the same request.
 <td>password</td>
 <td><em>yes</em></td>
 <td>Secure password.</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+          <h1 id="companies">Companies</h1>
+
+<h2 id="update">Update</h2>
+
+<blockquote>
+<p><code class="prettyprint">GET /v1/companies/{company_id}</code></p>
+</blockquote>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl <span class="s1">'/v1/companies/{$company_id}'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+    -d <span class="nv">name</span><span class="o">=</span><span class="s1">'My Jet Company'</span> <span class="se">\</span>
+    -d <span class="nv">contact_name</span><span class="o">=</span><span class="s1">'John Doe'</span>
+</code></pre>
+
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a84d8855-da27-4c4a-99fe-fab2f2bccf8b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"airline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">628</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Jet Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charter-operator"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iata_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APP"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icao_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-28 13:43:40"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-28 13:43:40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Jet Company"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registration_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_airline"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_operator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-28 13:04:18"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-28 13:55:39"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><em>yes</em></td>
+<td>Company name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>country</td>
+<td><em>no</em></td>
+<td>Country ISO CODE 2 based on a <a href="#countries">country list</a>.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>legal_name</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>registration_number</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>site</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>phone</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>address_1</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>address_2</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>city</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>state</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>zipcode</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>bank_info</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>contact_info</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>contact_name</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>contact_phone</td>
+<td><em>no</em></td>
+<td></td>
+<td>string</td>
+</tr>
+<tr>
+<td>contact_email</td>
+<td><em>no</em></td>
+<td></td>
 <td>string</td>
 </tr>
 </tbody></table>
