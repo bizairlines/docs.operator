@@ -78,8 +78,7 @@ $ curl -XPOST '/v1/security/account/operator' \
 
 Creates an account for operators.
 
-During this moment a fantasy company is created and the company will not be activated until the creator confirm the
-authenticity of the registered account.
+During this moment a fantasy company is created.
 
 | Parameter     | Required | Description                                               | Format |
 |---------------|----------|-----------------------------------------------------------|--------|
