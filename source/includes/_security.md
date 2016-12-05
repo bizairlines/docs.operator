@@ -1,29 +1,5 @@
 # Security
-## App account
-> `POST /v1/security/account`
-
-```shell
-$ curl -XPOST '/v1/security/account' \
-    -H 'Content-type: application/json' \
-    -d email='john@doe.com' \
-    -d password='secure password' \
-    -d first_name=John \
-    -d last_name=Doe \
-    -d country_id=100
-```
-
-| Parameter     | Required | Description                                               | Format |
-|---------------|----------|-----------------------------------------------------------|--------|
-| email         | *yes*    | The user’s email address that will also be used as login. | string |
-| password      | *yes*    | Secure password.                                          | string |
-| first_name    | *yes*    | User's first name.                                        | string |
-| last_name     | *yes*    | User's last name.                                         | string |
-| country_id    | *yes*    | Country ID based on a [country list](#countries).         | int    |
-| phone         | *no*     | User's phone.                                             | string |
-| hourly_salary | *no*     | User's hourly salary (USD).                               | float  |
-
-## Operator account
-> `POST /v1/security/account/operator`
+## Create account
 
 ```shell
 $ curl -XPOST '/v1/security/account/operator' \
@@ -43,7 +19,6 @@ $ curl -XPOST '/v1/security/account/operator' \
     "first_name": "John",
     "last_name": "Doe",
     "phone": null,
-    "hourly_salary": "0.00",
     "updated_at": "2016-10-27 18:25:14",
     "created_at": "2016-10-27 18:25:14",
     "id": "3d86db25-c2c8-4b27-9040-fa50b41905bb",
@@ -76,6 +51,10 @@ $ curl -XPOST '/v1/security/account/operator' \
 }
 ```
 
+### HTTP REQUEST
+`POST /v1/security/account/operator`
+
+### DEFINITION
 Creates an account for operators.
 
 During this moment a fantasy company is created.
@@ -86,19 +65,11 @@ During this moment a fantasy company is created.
 | password      | *yes*    | Secure password.                                          | string |
 | first_name    | *yes*    | User's first name.                                        | string |
 | last_name     | *yes*    | User's last name.                                         | string |
-| country_id    | *no*     | Country ID based on a [country list](#countries).         | int    |
+| country       | *no*     | Country ISO CODE 2 based on a [country list](#countries). | string |
 | phone         | *no*     | User's phone.                                             | string |
-| hourly_salary | *no*     | User's hourly salary (USD).                               | float  |
 
 ## Login
-> `POST /v1/security/login/app`
 
-```
-{
-    "email": "name@tld.com",
-    "password": "111111"
-}
-```
 ```shell
 $ curl -XPOST '/v1/security/login/app' \
     -H 'Content-type: application/json' \
@@ -106,6 +77,123 @@ $ curl -XPOST '/v1/security/login/app' \
     -d password='secure password'
 ```
 
+> Example Response
+
+```
+{
+  "data": {
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...",
+    "user": {
+      "id": "3f084a13-c0f4-428e-a80e-04647674ced4",
+      "country": null,
+      "avatar": {
+        "id": "3cb8249c-2fba-4a24-b09c-d6ac6ca84a3d",
+        "url": "https://res.cloudinary.com/bizairlines/image/upload/v1/company/51-my-jet-company/hqhrsfjsu4q7vew1dpi1.png",
+        "name": "company/51-my-jet-company/hqhrsfjsu4q7vew1dpi1",
+        "mimetype": "image/jpeg",
+        "size": 328043,
+        "extension": "jpeg",
+        "is_active": true,
+        "created_at": "2016-12-04 23:32:04",
+        "updated_at": "2016-12-04 23:32:04"
+      },
+      "email": "kyle@gmail.com",
+      "first_name": "Kyle",
+      "last_name": "House",
+      "phone": null,
+      "company_position": null,
+      "is_active": true,
+      "created_at": "2016-11-08 08:41:35",
+      "updated_at": "2016-12-04 23:32:04",
+      "address": [],
+      "company": [
+        {
+          "id": "3fa978cf-efb9-4072-8251-6d36f05a92ad",
+          "airline": {
+            "id": 631,
+            "name": "My Jet Company",
+            "category": "charter-operator",
+            "iata_code": "XP",
+            "icao_code": "XPT",
+            "created_at": "2016-11-08 08:43:06",
+            "updated_at": "2016-11-08 08:43:06"
+          },
+          "country": {
+            "id": 234,
+            "name": "United States",
+            "iso_code_2": "US",
+            "iso_code_3": "USA",
+            "area_code": "1",
+            "order": 3,
+            "created_at": "2016-08-03 21:17:21",
+            "updated_at": "2016-08-03 21:17:21"
+          },
+          "logo": {
+            "id": "169e9890-10af-41c1-b511-0b2a5a20428d",
+            "url": "https://res.cloudinary.com/bizairlines/image/upload/v1/company/51-my-jet-company/gmykmx08z6fui4pnhe7u.png",
+            "name": "company/51-my-jet-company/gmykmx08z6fui4pnhe7u",
+            "mimetype": "image/png",
+            "size": 195234,
+            "extension": "png",
+            "is_active": true,
+            "created_at": "2016-11-25 00:26:00",
+            "updated_at": "2016-11-25 00:26:00"
+          },
+          "thumbnail": {
+            "id": "c8fdb2c6-6637-47eb-a0ce-664a22f13f02",
+            "url": "https://res.cloudinary.com/bizairlines/image/upload/v1/company/51-my-jet-company/hqhrsfjsu4q7vew1dpi1.png",
+            "name": "company/51-my-jet-company/hqhrsfjsu4q7vew1dpi1",
+            "mimetype": "image/png",
+            "size": 5012,
+            "extension": "png",
+            "is_active": true,
+            "created_at": "2016-11-08 08:42:47",
+            "updated_at": "2016-11-08 08:42:47"
+          },
+          "name": "My Jet Company",
+          "legal_name": null,
+          "registration_number": null,
+          "site": "www.my-jet-company.com",
+          "phone": "12121212",
+          "address_1": "Miami International Airport, Northwest 25th Street, Miami, FL, United States",
+          "address_2": "",
+          "city": "Miami",
+          "state": "Florida",
+          "zipcode": "33142",
+          "bank_info": null,
+          "contact_info": null,
+          "contact_name": "My Jet Company",
+          "contact_phone": "",
+          "contact_email": "",
+          "is_active": true,
+          "is_airline": false,
+          "is_operator": true,
+          "has_entered_iata": true,
+          "created_at": "2016-11-08 08:41:35",
+          "updated_at": "2016-11-25 00:26:00"
+        }
+      ],
+      "card": [],
+      "permission": [
+        {
+          "permission": "admin",
+          "system": {
+            "name": "Charter Operator Tool",
+            "slug": "charter-operator-tool",
+            "description": null
+          }
+        }
+      ],
+      "is_complete": false
+    }
+  }
+}
+```
+
+### HTTP REQUEST
+`POST /v1/security/login/operator`
+
+### DEFINITION
 Check sent credentials, authenticate a user and return a valid token and user object.
 
 | Parameter | Required | Description               | Format |
@@ -120,7 +208,7 @@ The reset password contains two steps process:
 2. Reset password.
 
 ### Generate code
-> `POST /v1/security/password/reset`
+`POST /v1/security/password/reset`
 
 ```shell
 $ curl -XPOST '/v1/security/password/reset' \
@@ -137,7 +225,7 @@ This code is valid for 1 day and will be sent to a registered email.
 | email     | *yes*    | The user’s email address. | string |
 
 ### Reset password
-> `PUT /v1/security/password/reset`
+`PUT /v1/security/password/reset`
 
 ```shell
 $ curl -XPUT '/v1/security/password/reset' \

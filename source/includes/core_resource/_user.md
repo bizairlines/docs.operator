@@ -19,7 +19,7 @@ $ curl -XPUT '/v1/users/{$id}' \
     -H 'Content-type: application/json' \
     -d first_name=John \
     -d last_name=Doe \
-    -d country_id=100 \
+    -d country=CA \
     -d phone='+55 61 991560000' \
     -d hourly_salary=2000
 ```
@@ -32,9 +32,8 @@ It's not necessary to send all the parameters in the same request.
 |------------------|-----------------------------------------------------------|--------|
 | first_name       | User's first name.                                        | string |
 | last_name        | User's last name.                                         | string |
-| country_id       | Country ID based on a [country list](#countries).         | int    |
+| country          | Country ISO CODE 2 based on a [country list](#countries). | string |
 | phone            | User's phone.                                             | string |
-| hourly_salary    | User's hourly salary (USD).                               | float  |
 
 ## Delete
 > `DELETE /v1/users/{$id}`

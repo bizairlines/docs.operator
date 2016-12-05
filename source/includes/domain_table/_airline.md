@@ -1,6 +1,4 @@
 ## Airlines
-### List/Table
-> `GET /v1/airlines`
 
 ```shell
 $ curl '/v1/airlines' \
@@ -36,6 +34,10 @@ $ curl '/v1/airlines' \
 }
 ```
 
+### HTTP REQUEST
+`GET /v1/airlines`
+
+### List/Table
 | Parameter | Required | Description                                                                               | Format  |
 |-----------|----------|-------------------------------------------------------------------------------------------|---------|
 | page      | *no*     | The number of the page.                                                                   | integer |
@@ -43,7 +45,6 @@ $ curl '/v1/airlines' \
 | order     | *no*     | The direction to do the sorting. Available only `asc` and `desc` options. Default: `asc`. | integer |
 
 ### Autocomplete
-> `GET /v1/airlines/autocomplete`
 
 ```shell
 $ curl '/v1/airlines/autocomplete' \
@@ -132,6 +133,8 @@ $ curl '/v1/airlines/autocomplete' \
   ]
 }
 ```
+
+`GET /v1/airlines/autocomplete`
 
 Search for registered airlines. The airlines are available in 3 categories:
 

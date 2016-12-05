@@ -1,6 +1,4 @@
 ## Airports
-### List/Table
-> `GET /v1/airports`
 
 ```shell
 $ curl '/v1/airports' \
@@ -44,6 +42,11 @@ $ curl '/v1/airports' \
 }
 ```
 
+### HTTP REQUEST
+`GET /v1/airports`
+
+### Definition
+
 | Parameter | Required | Description                                                                               | Format  |
 |-----------|----------|-------------------------------------------------------------------------------------------|---------|
 | page      | *no*     | The number of the page.                                                                   | integer |
@@ -51,7 +54,7 @@ $ curl '/v1/airports' \
 | order     | *no*     | The direction to do the sorting. Available only `asc` and `desc` options. Default: `asc`. | integer |
 
 ### Autocomplete
-> `GET /v1/airports/autocomplete`
+`GET /v1/airports/autocomplete`
 
 ```shell
 $ curl '/v1/airports/autocomplete' \

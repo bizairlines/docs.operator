@@ -1,5 +1,4 @@
 ## Countries
-> `GET /v1/countries`
 
 ```shell
 $ curl '/v1/countries' \
@@ -55,256 +54,261 @@ $ curl '/v1/countries' \
 }
 ```
 
-Return the list of countries ordered by the attribute `order` where the countries with `null` value are the lasts.
+### HTTP REQUEST
+`GET /v1/countries`
 
-| ID | Name | ISO Code 2 | ISO Code 3 |
-|----|------|------------|------------|
-| 1 |   Afghanistan  | AF  | AFG |
-| 2 |   Albania  | AL  | ALB |
-| 3 |   Algeria  | DZ  | DZA |
-| 4 |   American Samoa   | AS  | ASM |
-| 5 |   Andorra  | AD  | AND |
-| 6 |   Angola   | AO  | AGO |
-| 7 |   Anguilla     | AI  | AIA |
-| 8 |   Antarctica   | AQ  | ATA |
-| 9 |   Antigua & Barbuda    | AG  | ATG |
-| 10 |  Argentina    | AR  | ARG |
-| 11 |  Armenia  | AM  | ARM |
-| 12 |  Aruba    | AW  | ABW |
-| 13 |  Australia    | AU  | AUS |
-| 14 |  Austria  | AT  | AUT |
-| 15 |  Azerbaijan   | AZ  | AZE |
-| 16 |  Bahamas  | BS  | BHS |
-| 17 |  Bahrain  | BH  | BHR |
-| 18 |  Bangladesh   | BD  | BGD |
-| 19 |  Barbados     | BB  | BRB |
-| 20 |  Belarus  | BY  | BLR |
-| 21 |  Belgium  | BE  | BEL |
-| 22 |  Belize   | BZ  | BLZ |
-| 23 |  Benin    | BJ  | BEN |
-| 24 |  Bermuda  | BM  | BMU |
-| 25 |  Bhutan   | BT  | BTN |
-| 26 |  Bolivia  | BO  | BOL |
-| 27 |  Bosnia   | BA  | BIH |
-| 28 |  Botswana     | BW  | BWA |
-| 29 |  Bouvet Island    | BV  | BVT |
-| 30 |  Brazil   | BR  | BRA |
-| 31 |  British Indian Ocean Territory   | IO  | IOT |
-| 32 |  British Virgin Islands   | VG  | VGB |
-| 33 |  Brunei   | BN  | BRN |
-| 34 |  Bulgaria     | BG  | BGR |
-| 35 |  Burkina Faso     | BF  | BFA |
-| 36 |  Burundi  | BI  | BDI |
-| 37 |  Cambodia     | KH  | KHM |
-| 38 |  Cameroon     | CM  | CMR |
-| 39 |  Canada   | CA  | CAN |
-| 40 |  Cape Verde   | CV  | CPV |
-| 41 |  Caribbean Netherlands    | BQ  | BES |
-| 42 |  Cayman Islands   | KY  | CYM |
-| 43 |  Central African Republic     | CF  | CAF |
-| 44 |  Chad     | TD  | TCD |
-| 45 |  Chile    | CL  | CHL |
-| 46 |  China    | CN  | CHN |
-| 47 |  Christmas Island     | CX  | CXR |
-| 48 |  Cocos (Keeling) Islands  | CC  | CCK |
-| 49 |  Colombia     | CO  | COL |
-| 50 |  Comoros  | KM  | COM |
-| 51 |  Congo - Brazzaville  | CG  | COG |
-| 52 |  Congo - Kinshasa     | CD  | COD |
-| 53 |  Cook Islands     | CK  | COK |
-| 54 |  Costa Rica   | CR  | CRI |
-| 55 |  Croatia  | HR  | HRV |
-| 56 |  Cuba     | CU  | CUB |
-| 57 |  Curaçao  | CW  | CUW |
-| 58 |  Cyprus   | CY  | CYP |
-| 59 |  Czech Republic   | CZ  | CZE |
-| 60 |  Côte d’Ivoire    | CI  | CIV |
-| 61 |  Denmark  | DK  | DNK |
-| 62 |  Djibouti     | DJ  | DJI |
-| 63 |  Dominica     | DM  | DMA |
-| 64 |  Dominican Republic   | DO  | DOM |
-| 65 |  Ecuador  | EC  | ECU |
-| 66 |  Egypt    | EG  | EGY |
-| 67 |  El Salvador  | SV  | SLV |
-| 68 |  Equatorial Guinea    | GQ  | GNQ |
-| 69 |  Eritrea  | ER  | ERI |
-| 70 |  Estonia  | EE  | EST |
-| 71 |  Ethiopia     | ET  | ETH |
-| 72 |  Falkland Islands     | FK  | FLK |
-| 73 |  Faroe Islands    | FO  | FRO |
-| 74 |  Fiji     | FJ  | FJI |
-| 75 |  Finland  | FI  | FIN |
-| 76 |  France   | FR  | FRA |
-| 77 |  French Guiana    | GF  | GUF |
-| 78 |  French Polynesia     | PF  | PYF |
-| 79 |  French Southern Territories  | TF  | ATF |
-| 80 |  Gabon    | GA  | GAB |
-| 81 |  Gambia   | GM  | GMB |
-| 82 |  Georgia  | GE  | GEO |
-| 83 |  Germany  | DE  | DEU |
-| 84 |  Ghana    | GH  | GHA |
-| 85 |  Gibraltar    | GI  | GIB |
-| 86 |  Greece   | GR  | GRC |
-| 87 |  Greenland    | GL  | GRL |
-| 88 |  Grenada  | GD  | GRD |
-| 89 |  Guadeloupe   | GP  | GLP |
-| 90 |  Guam     | GU  | GUM |
-| 91 |  Guatemala    | GT  | GTM |
-| 92 |  Guernsey     | GG  | GGY |
-| 93 |  Guinea   | GN  | GIN |
-| 94 |  Guinea-Bissau    | GW  | GNB |
-| 95 |  Guyana   | GY  | GUY |
-| 96 |  Haiti    | HT  | HTI |
-| 97 |  Heard & McDonald Islands     | HM  | HMD |
-| 98 |  Honduras     | HN  | HND |
-| 99 |  Hong Kong    | HK  | HKG |
-| 100 | Hungary  | HU  | HUN |
-| 101 | Iceland  | IS  | ISL |
-| 102 | India    | IN  | IND |
-| 103 | Indonesia    | ID  | IDN |
-| 104 | Iran     | IR  | IRN |
-| 105 | Iraq     | IQ  | IRQ |
-| 106 | Ireland  | IE  | IRL |
-| 107 | Isle of Man  | IM  | IMN |
-| 108 | Israel   | IL  | ISR |
-| 109 | Italy    | IT  | ITA |
-| 110 | Jamaica  | JM  | JAM |
-| 111 | Japan    | JP  | JPN |
-| 112 | Jersey   | JE  | JEY |
-| 113 | Jordan   | JO  | JOR |
-| 114 | Kazakhstan   | KZ  | KAZ |
-| 115 | Kenya    | KE  | KEN |
-| 116 | Kiribati     | KI  | KIR |
-| 117 | Kuwait   | KW  | KWT |
-| 118 | Kyrgyzstan   | KG  | KGZ |
-| 119 | Laos     | LA  | LAO |
-| 120 | Latvia   | LV  | LVA |
-| 121 | Lebanon  | LB  | LBN |
-| 122 | Lesotho  | LS  | LSO |
-| 123 | Liberia  | LR  | LBR |
-| 124 | Libya    | LY  | LBY |
-| 125 | Liechtenstein    | LI  | LIE |
-| 126 | Lithuania    | LT  | LTU |
-| 127 | Luxembourg   | LU  | LUX |
-| 128 | Macau    | MO  | MAC |
-| 129 | Macedonia    | MK  | MKD |
-| 130 | Madagascar   | MG  | MDG |
-| 131 | Malawi   | MW  | MWI |
-| 132 | Malaysia     | MY  | MYS |
-| 133 | Maldives     | MV  | MDV |
-| 134 | Mali     | ML  | MLI |
-| 135 | Malta    | MT  | MLT |
-| 136 | Marshall Islands     | MH  | MHL |
-| 137 | Martinique   | MQ  | MTQ |
-| 138 | Mauritania   | MR  | MRT |
-| 139 | Mauritius    | MU  | MUS |
-| 140 | Mayotte  | YT  | MYT |
-| 141 | Mexico   | MX  | MEX |
-| 142 | Micronesia   | FM  | FSM |
-| 143 | Moldova  | MD  | MDA |
-| 144 | Monaco   | MC  | MCO |
-| 145 | Mongolia     | MN  | MNG |
-| 146 | Montenegro   | ME  | MNE |
-| 147 | Montserrat   | MS  | MSR |
-| 148 | Morocco  | MA  | MAR |
-| 149 | Mozambique   | MZ  | MOZ |
-| 150 | Myanmar  | MM  | MMR |
-| 151 | Namibia  | NA  | NAM |
-| 152 | Nauru    | NR  | NRU |
-| 153 | Nepal    | NP  | NPL |
-| 154 | Netherlands  | NL  | NLD |
-| 155 | New Caledonia    | NC  | NCL |
-| 156 | New Zealand  | NZ  | NZL |
-| 157 | Nicaragua    | NI  | NIC |
-| 158 | Niger    | NE  | NER |
-| 159 | Nigeria  | NG  | NGA |
-| 160 | Niue     | NU  | NIU |
-| 161 | Norfolk Island   | NF  | NFK |
-| 162 | North Korea  | KP  | PRK |
-| 163 | Northern Mariana Islands     | MP  | MNP |
-| 164 | Norway   | NO  | NOR |
-| 165 | Oman     | OM  | OMN |
-| 166 | Pakistan     | PK  | PAK |
-| 167 | Palau    | PW  | PLW |
-| 168 | Palestine    | PS  | PSE |
-| 169 | Panama   | PA  | PAN |
-| 170 | Papua New Guinea     | PG  | PNG |
-| 171 | Paraguay     | PY  | PRY |
-| 172 | Peru     | PE  | PER |
-| 173 | Philippines  | PH  | PHL |
-| 174 | Pitcairn Islands     | PN  | PCN |
-| 175 | Poland   | PL  | POL |
-| 176 | Portugal     | PT  | PRT |
-| 177 | Puerto Rico  | PR  | PRI |
-| 178 | Qatar    | QA  | QAT |
-| 179 | Romania  | RO  | ROU |
-| 180 | Russia   | RU  | RUS |
-| 181 | Rwanda   | RW  | RWA |
-| 182 | Réunion  | RE  | REU |
-| 183 | Samoa    | WS  | WSM |
-| 184 | San Marino   | SM  | SMR |
-| 185 | Saudi Arabia     | SA  | SAU |
-| 186 | Senegal  | SN  | SEN |
-| 187 | Serbia   | RS  | SRB |
-| 188 | Seychelles   | SC  | SYC |
-| 189 | Sierra Leone     | SL  | SLE |
-| 190 | Singapore    | SG  | SGP |
-| 191 | Sint Maarten     | SX  | SXM |
-| 192 | Slovakia     | SK  | SVK |
-| 193 | Slovenia     | SI  | SVN |
-| 194 | Solomon Islands  | SB  | SLB |
-| 195 | Somalia  | SO  | SOM |
-| 196 | South Africa     | ZA  | ZAF |
-| 197 | South Georgia & South Sandwich Islands   | GS  | SGS |
-| 198 | South Korea  | KR  | KOR |
-| 199 | South Sudan  | SS  | SSD |
-| 200 | Spain    | ES  | ESP |
-| 201 | Sri Lanka    | LK  | LKA |
-| 202 | St. Barthélemy   | BL  | BLM |
-| 203 | St. Helena   | SH  | SHN |
-| 204 | St. Kitts & Nevis    | KN  | KNA |
-| 205 | St. Lucia    | LC  | LCA |
-| 206 | St. Martin   | MF  | MAF |
-| 207 | St. Pierre & Miquelon    | PM  | SPM |
-| 208 | St. Vincent & Grenadines     | VC  | VCT |
-| 209 | Sudan    | SD  | SDN |
-| 210 | Suriname     | SR  | SUR |
-| 211 | Svalbard & Jan Mayen     | SJ  | SJM |
-| 212 | Swaziland    | SZ  | SWZ |
-| 213 | Sweden   | SE  | SWE |
-| 214 | Switzerland  | CH  | CHE |
-| 215 | Syria    | SY  | SYR |
-| 216 | São Tomé & Príncipe  | ST  | STP |
-| 217 | Taiwan   | TW  | TWN |
-| 218 | Tajikistan   | TJ  | TJK |
-| 219 | Tanzania     | TZ  | TZA |
-| 220 | Thailand     | TH  | THA |
-| 221 | Timor-Leste  | TL  | TLS |
-| 222 | Togo     | TG  | TGO |
-| 223 | Tokelau  | TK  | TKL |
-| 224 | Tonga    | TO  | TON |
-| 225 | Trinidad & Tobago    | TT  | TTO |
-| 226 | Tunisia  | TN  | TUN |
-| 227 | Turkey   | TR  | TUR |
-| 228 | Turkmenistan     | TM  | TKM |
-| 229 | Turks & Caicos Islands   | TC  | TCA |
-| 230 | Tuvalu   | TV  | TUV |
-| 231 | U.S. Outlying Islands    | UM  | UMI |
-| 232 | U.S. Virgin Islands  | VI  | VIR |
-| 233 | United Kingdom   | GB  | GBR |
-| 234 | United States    | US  | USA |
-| 235 | Uganda   | UG  | UGA |
-| 236 | Ukraine  | UA  | UKR |
-| 237 | United Arab Emirates     | AE  | ARE |
-| 238 | Uruguay  | UY  | URY |
-| 239 | Uzbekistan   | UZ  | UZB |
-| 240 | Vanuatu  | VU  | VUT |
-| 241 | Vatican City     | VA  | VAT |
-| 242 | Venezuela    | VE  | VEN |
-| 243 | Vietnam  | VN  | VNM |
-| 244 | Wallis & Futuna  | WF  | WLF |
-| 245 | Western Sahara   | EH  | ESH |
-| 246 | Yemen    | YE  | YEM |
-| 247 | Zambia   | ZM  | ZMB |
-| 248 | Zimbabwe     | ZW  | ZWE |
-| 249 | Åland Islands    | AX  | ALA |
+### DEFINITION
+
+Returns the list of countries ordered by the attribute `order` where the countries with `null` order value are the lasts.
+
+| Name | ISO Code 2 | ISO Code 3 |
+|------|------------|------------|
+|   Afghanistan  | AF  | AFG |
+|   Albania  | AL  | ALB |
+|   Algeria  | DZ  | DZA |
+|   American Samoa   | AS  | ASM |
+|   Andorra  | AD  | AND |
+|   Angola   | AO  | AGO |
+|   Anguilla     | AI  | AIA |
+|   Antarctica   | AQ  | ATA |
+|   Antigua & Barbuda    | AG  | ATG |
+|  Argentina    | AR  | ARG |
+|  Armenia  | AM  | ARM |
+|  Aruba    | AW  | ABW |
+|  Australia    | AU  | AUS |
+|  Austria  | AT  | AUT |
+|  Azerbaijan   | AZ  | AZE |
+|  Bahamas  | BS  | BHS |
+|  Bahrain  | BH  | BHR |
+|  Bangladesh   | BD  | BGD |
+|  Barbados     | BB  | BRB |
+|  Belarus  | BY  | BLR |
+|  Belgium  | BE  | BEL |
+|  Belize   | BZ  | BLZ |
+|  Benin    | BJ  | BEN |
+|  Bermuda  | BM  | BMU |
+|  Bhutan   | BT  | BTN |
+|  Bolivia  | BO  | BOL |
+|  Bosnia   | BA  | BIH |
+|  Botswana     | BW  | BWA |
+|  Bouvet Island    | BV  | BVT |
+|  Brazil   | BR  | BRA |
+|  British Indian Ocean Territory   | IO  | IOT |
+|  British Virgin Islands   | VG  | VGB |
+|  Brunei   | BN  | BRN |
+|  Bulgaria     | BG  | BGR |
+|  Burkina Faso     | BF  | BFA |
+|  Burundi  | BI  | BDI |
+|  Cambodia     | KH  | KHM |
+|  Cameroon     | CM  | CMR |
+|  Canada   | CA  | CAN |
+|  Cape Verde   | CV  | CPV |
+|  Caribbean Netherlands    | BQ  | BES |
+|  Cayman Islands   | KY  | CYM |
+|  Central African Republic     | CF  | CAF |
+|  Chad     | TD  | TCD |
+|  Chile    | CL  | CHL |
+|  China    | CN  | CHN |
+|  Christmas Island     | CX  | CXR |
+|  Cocos (Keeling) Islands  | CC  | CCK |
+|  Colombia     | CO  | COL |
+|  Comoros  | KM  | COM |
+|  Congo - Brazzaville  | CG  | COG |
+|  Congo - Kinshasa     | CD  | COD |
+|  Cook Islands     | CK  | COK |
+|  Costa Rica   | CR  | CRI |
+|  Croatia  | HR  | HRV |
+|  Cuba     | CU  | CUB |
+|  Curaçao  | CW  | CUW |
+|  Cyprus   | CY  | CYP |
+|  Czech Republic   | CZ  | CZE |
+|  Côte d’Ivoire    | CI  | CIV |
+|  Denmark  | DK  | DNK |
+|  Djibouti     | DJ  | DJI |
+|  Dominica     | DM  | DMA |
+|  Dominican Republic   | DO  | DOM |
+|  Ecuador  | EC  | ECU |
+|  Egypt    | EG  | EGY |
+|  El Salvador  | SV  | SLV |
+|  Equatorial Guinea    | GQ  | GNQ |
+|  Eritrea  | ER  | ERI |
+|  Estonia  | EE  | EST |
+|  Ethiopia     | ET  | ETH |
+|  Falkland Islands     | FK  | FLK |
+|  Faroe Islands    | FO  | FRO |
+|  Fiji     | FJ  | FJI |
+|  Finland  | FI  | FIN |
+|  France   | FR  | FRA |
+|  French Guiana    | GF  | GUF |
+|  French Polynesia     | PF  | PYF |
+|  French Southern Territories  | TF  | ATF |
+|  Gabon    | GA  | GAB |
+|  Gambia   | GM  | GMB |
+|  Georgia  | GE  | GEO |
+|  Germany  | DE  | DEU |
+|  Ghana    | GH  | GHA |
+|  Gibraltar    | GI  | GIB |
+|  Greece   | GR  | GRC |
+|  Greenland    | GL  | GRL |
+|  Grenada  | GD  | GRD |
+|  Guadeloupe   | GP  | GLP |
+|  Guam     | GU  | GUM |
+|  Guatemala    | GT  | GTM |
+|  Guernsey     | GG  | GGY |
+|  Guinea   | GN  | GIN |
+|  Guinea-Bissau    | GW  | GNB |
+|  Guyana   | GY  | GUY |
+|  Haiti    | HT  | HTI |
+|  Heard & McDonald Islands     | HM  | HMD |
+|  Honduras     | HN  | HND |
+|  Hong Kong    | HK  | HKG |
+| Hungary  | HU  | HUN |
+| Iceland  | IS  | ISL |
+| India    | IN  | IND |
+| Indonesia    | ID  | IDN |
+| Iran     | IR  | IRN |
+| Iraq     | IQ  | IRQ |
+| Ireland  | IE  | IRL |
+| Isle of Man  | IM  | IMN |
+| Israel   | IL  | ISR |
+| Italy    | IT  | ITA |
+| Jamaica  | JM  | JAM |
+| Japan    | JP  | JPN |
+| Jersey   | JE  | JEY |
+| Jordan   | JO  | JOR |
+| Kazakhstan   | KZ  | KAZ |
+| Kenya    | KE  | KEN |
+| Kiribati     | KI  | KIR |
+| Kuwait   | KW  | KWT |
+| Kyrgyzstan   | KG  | KGZ |
+| Laos     | LA  | LAO |
+| Latvia   | LV  | LVA |
+| Lebanon  | LB  | LBN |
+| Lesotho  | LS  | LSO |
+| Liberia  | LR  | LBR |
+| Libya    | LY  | LBY |
+| Liechtenstein    | LI  | LIE |
+| Lithuania    | LT  | LTU |
+| Luxembourg   | LU  | LUX |
+| Macau    | MO  | MAC |
+| Macedonia    | MK  | MKD |
+| Madagascar   | MG  | MDG |
+| Malawi   | MW  | MWI |
+| Malaysia     | MY  | MYS |
+| Maldives     | MV  | MDV |
+| Mali     | ML  | MLI |
+| Malta    | MT  | MLT |
+| Marshall Islands     | MH  | MHL |
+| Martinique   | MQ  | MTQ |
+| Mauritania   | MR  | MRT |
+| Mauritius    | MU  | MUS |
+| Mayotte  | YT  | MYT |
+| Mexico   | MX  | MEX |
+| Micronesia   | FM  | FSM |
+| Moldova  | MD  | MDA |
+| Monaco   | MC  | MCO |
+| Mongolia     | MN  | MNG |
+| Montenegro   | ME  | MNE |
+| Montserrat   | MS  | MSR |
+| Morocco  | MA  | MAR |
+| Mozambique   | MZ  | MOZ |
+| Myanmar  | MM  | MMR |
+| Namibia  | NA  | NAM |
+| Nauru    | NR  | NRU |
+| Nepal    | NP  | NPL |
+| Netherlands  | NL  | NLD |
+| New Caledonia    | NC  | NCL |
+| New Zealand  | NZ  | NZL |
+| Nicaragua    | NI  | NIC |
+| Niger    | NE  | NER |
+| Nigeria  | NG  | NGA |
+| Niue     | NU  | NIU |
+| Norfolk Island   | NF  | NFK |
+| North Korea  | KP  | PRK |
+| Northern Mariana Islands     | MP  | MNP |
+| Norway   | NO  | NOR |
+| Oman     | OM  | OMN |
+| Pakistan     | PK  | PAK |
+| Palau    | PW  | PLW |
+| Palestine    | PS  | PSE |
+| Panama   | PA  | PAN |
+| Papua New Guinea     | PG  | PNG |
+| Paraguay     | PY  | PRY |
+| Peru     | PE  | PER |
+| Philippines  | PH  | PHL |
+| Pitcairn Islands     | PN  | PCN |
+| Poland   | PL  | POL |
+| Portugal     | PT  | PRT |
+| Puerto Rico  | PR  | PRI |
+| Qatar    | QA  | QAT |
+| Romania  | RO  | ROU |
+| Russia   | RU  | RUS |
+| Rwanda   | RW  | RWA |
+| Réunion  | RE  | REU |
+| Samoa    | WS  | WSM |
+| San Marino   | SM  | SMR |
+| Saudi Arabia     | SA  | SAU |
+| Senegal  | SN  | SEN |
+| Serbia   | RS  | SRB |
+| Seychelles   | SC  | SYC |
+| Sierra Leone     | SL  | SLE |
+| Singapore    | SG  | SGP |
+| Sint Maarten     | SX  | SXM |
+| Slovakia     | SK  | SVK |
+| Slovenia     | SI  | SVN |
+| Solomon Islands  | SB  | SLB |
+| Somalia  | SO  | SOM |
+| South Africa     | ZA  | ZAF |
+| South Georgia & South Sandwich Islands   | GS  | SGS |
+| South Korea  | KR  | KOR |
+| South Sudan  | SS  | SSD |
+| Spain    | ES  | ESP |
+| Sri Lanka    | LK  | LKA |
+| St. Barthélemy   | BL  | BLM |
+| St. Helena   | SH  | SHN |
+| St. Kitts & Nevis    | KN  | KNA |
+| St. Lucia    | LC  | LCA |
+| St. Martin   | MF  | MAF |
+| St. Pierre & Miquelon    | PM  | SPM |
+| St. Vincent & Grenadines     | VC  | VCT |
+| Sudan    | SD  | SDN |
+| Suriname     | SR  | SUR |
+| Svalbard & Jan Mayen     | SJ  | SJM |
+| Swaziland    | SZ  | SWZ |
+| Sweden   | SE  | SWE |
+| Switzerland  | CH  | CHE |
+| Syria    | SY  | SYR |
+| São Tomé & Príncipe  | ST  | STP |
+| Taiwan   | TW  | TWN |
+| Tajikistan   | TJ  | TJK |
+| Tanzania     | TZ  | TZA |
+| Thailand     | TH  | THA |
+| Timor-Leste  | TL  | TLS |
+| Togo     | TG  | TGO |
+| Tokelau  | TK  | TKL |
+| Tonga    | TO  | TON |
+| Trinidad & Tobago    | TT  | TTO |
+| Tunisia  | TN  | TUN |
+| Turkey   | TR  | TUR |
+| Turkmenistan     | TM  | TKM |
+| Turks & Caicos Islands   | TC  | TCA |
+| Tuvalu   | TV  | TUV |
+| U.S. Outlying Islands    | UM  | UMI |
+| U.S. Virgin Islands  | VI  | VIR |
+| United Kingdom   | GB  | GBR |
+| United States    | US  | USA |
+| Uganda   | UG  | UGA |
+| Ukraine  | UA  | UKR |
+| United Arab Emirates     | AE  | ARE |
+| Uruguay  | UY  | URY |
+| Uzbekistan   | UZ  | UZB |
+| Vanuatu  | VU  | VUT |
+| Vatican City     | VA  | VAT |
+| Venezuela    | VE  | VEN |
+| Vietnam  | VN  | VNM |
+| Wallis & Futuna  | WF  | WLF |
+| Western Sahara   | EH  | ESH |
+| Yemen    | YE  | YEM |
+| Zambia   | ZM  | ZMB |
+| Zimbabwe     | ZW  | ZWE |
+| Åland Islands    | AX  | ALA |

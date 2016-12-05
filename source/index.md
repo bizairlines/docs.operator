@@ -10,9 +10,9 @@ toc_footers:
 includes:
   - introduction
   - security
-  - core_resource/user
   - core_resource/company
-  - core_resource/itinerary
+  - core_resource/aircraft
+  - core_resource/flight
   - domain_table
   - domain_table/aircraft
   - domain_table/airline
